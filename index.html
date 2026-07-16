@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cristiano M Martins — Machine Learning & Software Engineer</title>
+<meta name="description" content="Software engineer with a BSc in Data Science & AI and finance domain experience. Python, TensorFlow, Java/Spring Boot. Open to remote roles.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --border: #e8e8e8;
+    --accent: #0f62fe;
+    --tag-bg: #f4f4f4;
+    --max: 720px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 24px 80px; }
+
+  /* Language toggle */
+  .lang-toggle {
+    position: fixed; top: 20px; right: 20px; z-index: 10;
+    display: flex; border: 1px solid var(--border); border-radius: 20px;
+    overflow: hidden; background: var(--bg); box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .lang-toggle button {
+    border: none; background: transparent; padding: 6px 14px;
+    font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted);
+    font-family: inherit;
+  }
+  .lang-toggle button.active { background: var(--text); color: var(--bg); }
+
+  .lang-pt { display: none; }
+  body.pt .lang-pt { display: block; }
+  body.pt .lang-en { display: none; }
+  span.lang-pt, body.pt span.lang-pt { display: none; }
+  body.pt span.lang-pt { display: inline; }
+  span.lang-en { display: inline; }
+  body.pt span.lang-en { display: none; }
+
+  /* Header */
+  header { padding: 96px 0 48px; }
+  h1 { font-size: 34px; font-weight: 750; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .headline { font-size: 18px; color: var(--muted); margin-bottom: 20px; max-width: 620px; }
+  .meta { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links a {
+    text-decoration: none; color: var(--text); font-size: 14px; font-weight: 600;
+    border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px;
+    transition: border-color .15s, color .15s;
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Sections */
+  section { padding: 36px 0; border-top: 1px solid var(--border); }
+  h2 {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.2px; color: var(--muted); margin-bottom: 22px;
+  }
+  .about p { margin-bottom: 14px; max-width: 640px; }
+  .about p:last-child { margin-bottom: 0; }
+
+  /* Experience */
+  .job { margin-bottom: 30px; }
+  .job:last-child { margin-bottom: 0; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+  .job-title { font-size: 16px; font-weight: 650; }
+  .job-org { color: var(--muted); font-weight: 400; }
+  .job-date { font-size: 13.5px; color: var(--muted); white-space: nowrap; }
+  .job ul { margin-top: 8px; padding-left: 18px; }
+  .job li { margin-bottom: 5px; font-size: 15px; color: #333; }
+
+  /* Project */
+  .project-card {
+    border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px;
+  }
+  .project-card h3 { font-size: 17px; font-weight: 650; margin-bottom: 4px; }
+  .badge {
+    display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent);
+    background: rgba(15,98,254,.08); border-radius: 12px; padding: 2px 10px;
+    margin-left: 6px; vertical-align: middle;
+  }
+  .project-card p { font-size: 15px; color: #333; margin: 10px 0 14px; }
+
+  /* Tags */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: var(--tag-bg); border-radius: 6px; padding: 4px 11px;
+    font-size: 13.5px; font-weight: 500; color: #444;
+  }
+
+  /* Education / certs */
+  .edu { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; }
+  .edu:last-child { margin-bottom: 0; }
+  .edu-name { font-weight: 600; font-size: 15.5px; }
+  .edu-org { color: var(--muted); font-size: 14.5px; }
+  .edu-date { font-size: 13.5px; color: var(--muted); white-space: nowrap; }
+
+  footer { border-top: 1px solid var(--border); padding-top: 28px; font-size: 13.5px; color: var(--muted); }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 600px) {
+    header { padding-top: 72px; }
+    h1 { font-size: 28px; }
+    .job-head, .edu { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-toggle" role="group" aria-label="Language">
+  <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+  <button id="btn-pt" onclick="setLang('pt')">PT</button>
+</div>
+
+<div class="container">
+
+<header>
+  <h1>Cristiano M Martins</h1>
+  <p class="headline">
+    <span class="lang-en">Machine Learning &amp; Software Engineer · Python, TensorFlow, Java/Spring Boot · BSc in Data Science &amp; AI · FinTech background</span>
+    <span class="lang-pt">Engenheiro de Machine Learning &amp; Software · Python, TensorFlow, Java/Spring Boot · Bacharel em Ciência de Dados e IA · Experiência em FinTech</span>
+  </p>
+  <p class="meta">
+    <span class="lang-en">Remote / Open to relocation · English (professional working proficiency) · Portuguese (native)</span>
+    <span class="lang-pt">Remoto / Aberto a relocação · Inglês (proficiência profissional) · Português (nativo)</span>
+  </p>
+  <div class="links">
+    <a href="mailto:cristiano.mrmartins@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/cristiano-mrmartins" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/cristianomm" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</header>
+
+<section class="about">
+  <h2><span class="lang-en">About</span><span class="lang-pt">Sobre</span></h2>
+  <div class="lang-en">
+    <p>Software engineer with ~7 years of experience building and maintaining production systems in Java/Spring Boot and C#, now focused on bringing that engineering rigor to machine learning and data-driven products.</p>
+    <p>My path is a bit unusual — and that's the point: I started in software development, spent two years inside the financial markets as an investment analyst (fixed income, equities and quantitative portfolio analysis), and recently completed a BSc in Data Science &amp; Artificial Intelligence. That combination means I can ship reliable code, understand the business and the data behind it, and speak the language of both engineers and stakeholders.</p>
+    <p>On the ML and data side, I've worked with Python, TensorFlow, scikit-learn and classical ML (SVM, K-Means) as well as deep learning architectures (CNN, LSTM) and NLP. I hold the TensorFlow Developer and Azure AI Fundamentals certifications, and my first hands-on ML work — a classifier built on behavioral and fMRI data — was published at a scientific conference.</p>
+    <p>I'm looking for remote roles where strong software engineering and machine learning meet, ideally in fintech or data-intensive products where my finance background adds real value.</p>
+  </div>
+  <div class="lang-pt">
+    <p>Engenheiro de software com ~7 anos de experiência construindo e mantendo sistemas em produção com Java/Spring Boot e C#, hoje focado em levar esse rigor de engenharia para machine learning e produtos orientados a dados.</p>
+    <p>Minha trajetória é um pouco incomum — e é justamente esse o ponto: comecei em desenvolvimento de software, passei dois anos no mercado financeiro como analista de investimentos (renda fixa, ações e análise quantitativa de carteiras) e concluí recentemente o Bacharelado em Ciência de Dados e Inteligência Artificial. Essa combinação significa que eu entrego código confiável, entendo o negócio e os dados por trás dele, e falo a língua tanto de engenheiros quanto de stakeholders.</p>
+    <p>No lado de ML e dados, trabalho com Python, TensorFlow, scikit-learn e ML clássico (SVM, K-Means), além de arquiteturas de deep learning (CNN, LSTM) e NLP. Tenho as certificações TensorFlow Developer e Azure AI Fundamentals, e meu primeiro trabalho prático de ML — um classificador construído sobre dados comportamentais e de fMRI — foi publicado em conferência científica.</p>
+    <p>Busco posições remotas onde engenharia de software forte e machine learning se encontram, idealmente em fintechs ou produtos intensivos em dados, onde minha experiência em finanças agrega valor real.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="lang-en">Featured Project</span><span class="lang-pt">Projeto em Destaque</span></h2>
+  <div class="project-card">
+    <h3>Quant Portfolio Construction Engine
+      <span class="badge"><span class="lang-en">in progress</span><span class="lang-pt">em andamento</span></span>
+    </h3>
+    <div class="lang-en">
+      <p>End-to-end pipeline for data-driven investment portfolio construction: ingesting and storing financial asset data (PostgreSQL), computing quantitative/statistical features (returns, volatility, Sharpe, correlations), clustering assets for diversification (K-Means, scikit-learn), and optimizing portfolio weights (mean-variance optimization). Combines my software engineering background with my finance domain experience and data science training.</p>
+    </div>
+    <div class="lang-pt">
+      <p>Pipeline completo para construção de carteiras de investimento orientada a dados: ingestão e armazenamento de dados de ativos financeiros (PostgreSQL), cálculo de features quantitativas/estatísticas (retornos, volatilidade, Sharpe, correlações), clusterização de ativos para diversificação (K-Means, scikit-learn) e otimização de pesos da carteira (otimização média-variância). Une minha base em engenharia de software com experiência no domínio financeiro e formação em ciência de dados.</p>
+    </div>
+    <div class="tags">
+      <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">scikit-learn</span>
+      <span class="tag">PyPortfolioOpt</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="lang-en">Experience</span><span class="lang-pt">Experiência</span></h2>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Software Engineer <span class="job-org">· PUCRS</span></span>
+      <span class="job-date"><span class="lang-en">Sep 2021 – Present</span><span class="lang-pt">set 2021 – atual</span></span>
+    </div>
+    <div class="lang-en"><ul>
+      <li>Develop and ship features across academic systems end-to-end, from backend (Java / Spring Boot) to frontend (Angular, JSP), from small enhancements to complete new modules.</li>
+      <li>Design and maintain REST APIs with Spring Boot to integrate internal and third-party systems.</li>
+      <li>Led the technical modernization of legacy codebases, migrating from Java 6 to Java 8/11.</li>
+      <li>Investigate and resolve production bugs and incidents across legacy and newly built systems.</li>
+    </ul></div>
+    <div class="lang-pt"><ul>
+      <li>Desenvolvo e entrego funcionalidades em sistemas acadêmicos de ponta a ponta, do backend (Java / Spring Boot) ao frontend (Angular, JSP), de pequenas melhorias a módulos completos.</li>
+      <li>Projeto e mantenho APIs REST com Spring Boot para integrar sistemas internos e de terceiros.</li>
+      <li>Liderei a modernização técnica de bases de código legadas, migrando de Java 6 para Java 8/11.</li>
+      <li>Investigo e resolvo bugs e incidentes em produção, tanto em sistemas legados quanto novos.</li>
+    </ul></div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Investment Analyst <span class="job-org">· Warren Brasil</span></span>
+      <span class="job-date"><span class="lang-en">Aug 2019 – Jul 2021</span><span class="lang-pt">ago 2019 – jul 2021</span></span>
+    </div>
+    <div class="lang-en"><ul>
+      <li>Built an internal tool to automate fund monitoring and validation — executed trades, futures adjustments and asset/fund quote prices.</li>
+      <li>Performed quantitative analysis of client investment portfolios to support allocation and strategy decisions; developed a portfolio rebalancing tool automating asset reallocation across accounts.</li>
+      <li>Operated fixed income, equity and multi-strategy funds, including trading of fixed income securities (CDB, LF, LFSN, LFT) and Brazilian/international equities, ensuring regulatory compliance (CVM 555).</li>
+      <li>Initiated and led a project to centralize and calculate clients' investment data, creating a reliable source of truth for new product development; structured the project and managed the team until its transition into an independent squad.</li>
+    </ul></div>
+    <div class="lang-pt"><ul>
+      <li>Construí uma ferramenta interna para automatizar o monitoramento e a validação de fundos — boletas executadas, ajustes de futuros e cotas/preços de ativos e fundos.</li>
+      <li>Realizei análise quantitativa de carteiras de clientes para apoiar decisões de alocação e estratégia; desenvolvi ferramenta de rebalanceamento automatizando a realocação de ativos entre contas.</li>
+      <li>Operei fundos de renda fixa, ações e multimercado, incluindo negociação de títulos de renda fixa (CDB, LF, LFSN, LFT) e ações brasileiras/internacionais, garantindo conformidade regulatória (ICVM 555).</li>
+      <li>Iniciei e liderei um projeto para centralizar e calcular os dados de investimento dos clientes, criando uma fonte confiável para novos produtos; estruturei o projeto e gerenciei o time até sua transição para uma squad independente.</li>
+    </ul></div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Software Engineer <span class="job-org">· Warren Brasil</span></span>
+      <span class="job-date"><span class="lang-en">Apr 2018 – Aug 2019</span><span class="lang-pt">abr 2018 – ago 2019</span></span>
+    </div>
+    <div class="lang-en"><ul>
+      <li>Backend developer (C#, SQL Server, MySQL, Docker) on the managed-portfolios platform: deposits/withdrawals, allocation across investment products and return calculations for client holdings.</li>
+      <li>Designed and built the integration with CETIP to enable fixed income trading (CDB, LF) for platform clients; contributed to the interest-bearing account system.</li>
+    </ul></div>
+    <div class="lang-pt"><ul>
+      <li>Desenvolvedor backend (C#, SQL Server, MySQL, Docker) na plataforma de carteiras administradas: depósitos/resgates, alocação entre produtos de investimento e cálculo de rentabilidade das posições dos clientes.</li>
+      <li>Projetei e construí a integração com a CETIP para viabilizar a negociação de renda fixa (CDB, LF) para clientes da plataforma; contribuí para o sistema de conta remunerada.</li>
+    </ul></div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Machine Learning Intern <span class="job-org">· PUCRS</span></span>
+      <span class="job-date"><span class="lang-en">Mar 2016 – Jan 2017</span><span class="lang-pt">mar 2016 – jan 2017</span></span>
+    </div>
+    <div class="lang-en"><ul>
+      <li>Evaluated machine learning methods to identify school-age children with learning disorders using functional MRI images and behavioral test data.</li>
+      <li>Built a classification model using K-Means and SVM (scikit-learn) on behavioral data; preliminary results were presented at PUCRS's XVII Undergraduate Research Conference.</li>
+    </ul></div>
+    <div class="lang-pt"><ul>
+      <li>Avaliei métodos de machine learning para identificar crianças em idade escolar com transtornos de aprendizagem usando imagens de ressonância magnética funcional (fMRI) e dados de testes comportamentais.</li>
+      <li>Construí um modelo de classificação com K-Means e SVM (scikit-learn) sobre dados comportamentais; resultados preliminares apresentados no XVII Salão de Iniciação Científica da PUCRS.</li>
+    </ul></div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title"><span class="lang-en">Earlier roles</span><span class="lang-pt">Experiências anteriores</span> <span class="job-org">· ITS Group, Vensis, PUCRS</span></span>
+      <span class="job-date">2008 – 2016</span>
+    </div>
+    <div class="lang-en"><ul>
+      <li>Developed and maintained CrowdSim, a crowd-simulation software (C++), and built a Java/OpenGL analysis tool; contributed to a published research paper.</li>
+      <li>Developed C# and Java components and customizations for SAP Business One (ITS Group) and maintained a VB6 ERP system (Vensis) across finance, inventory and administrative modules.</li>
+    </ul></div>
+    <div class="lang-pt"><ul>
+      <li>Desenvolvi e mantive o CrowdSim, software de simulação de multidões (C++), e construí uma ferramenta de análise em Java/OpenGL; contribuí para artigo científico publicado.</li>
+      <li>Desenvolvi componentes e customizações em C# e Java para SAP Business One (ITS Group) e mantive um ERP em VB6 (Vensis), em módulos financeiros, de estoque e administrativos.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <div class="tags">
+    <span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span>
+    <span class="tag">TensorFlow</span><span class="tag">scikit-learn</span><span class="tag">NLP</span>
+    <span class="tag">Pandas</span><span class="tag">NumPy</span>
+    <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">C#</span>
+    <span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">SQL Server</span><span class="tag">MySQL</span>
+    <span class="tag">REST APIs</span><span class="tag">Docker</span><span class="tag">Git</span>
+    <span class="tag">Quantitative Finance</span>
+  </div>
+</section>
+
+<section>
+  <h2><span class="lang-en">Education &amp; Certifications</span><span class="lang-pt">Formação e Certificações</span></h2>
+  <div class="edu">
+    <div>
+      <div class="edu-name"><span class="lang-en">Postgraduate Degree in Finance</span><span class="lang-pt">Pós-graduação em Finanças</span></div>
+      <div class="edu-org">PUCRS</div>
+    </div>
+    <span class="edu-date">2025 – 2026 <span class="lang-en">(in progress)</span><span class="lang-pt">(em andamento)</span></span>
+  </div>
+  <div class="edu">
+    <div>
+      <div class="edu-name"><span class="lang-en">BSc in Data Science &amp; Artificial Intelligence</span><span class="lang-pt">Bacharelado em Ciência de Dados e IA</span></div>
+      <div class="edu-org">PUCRS</div>
+    </div>
+    <span class="edu-date">2020 – 2024</span>
+  </div>
+  <div class="edu">
+    <div><div class="edu-name">Microsoft Azure AI Fundamentals</div></div>
+    <span class="edu-date">2025</span>
+  </div>
+  <div class="edu">
+    <div><div class="edu-name">TensorFlow Developer Certificate</div></div>
+    <span class="edu-date">2024</span>
+  </div>
+  <div class="edu">
+    <div><div class="edu-name">DeepLearning.AI TensorFlow Developer</div></div>
+    <span class="edu-date">2024</span>
+  </div>
+  <div class="edu">
+    <div><div class="edu-name">Oracle Certified Professional, Java SE 7</div></div>
+    <span class="edu-date">2015</span>
+  </div>
+</section>
+
+<footer>
+  <p>
+    <span class="lang-en">© <span id="year"></span> Cristiano M Martins · <a href="mailto:cristiano.mrmartins@gmail.com">cristiano.mrmartins@gmail.com</a></span>
+    <span class="lang-pt">© <span id="year-pt"></span> Cristiano M Martins · <a href="mailto:cristiano.mrmartins@gmail.com">cristiano.mrmartins@gmail.com</a></span>
+  </p>
+</footer>
+
+</div>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('pt', lang === 'pt');
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    if (!saved) saved = (navigator.language || '').toLowerCase().startsWith('pt') ? 'pt' : 'en';
+    setLang(saved);
+    var y = new Date().getFullYear();
+    document.getElementById('year').textContent = y;
+    document.getElementById('year-pt').textContent = y;
+  })();
+</script>
+
+</body>
+</html>
